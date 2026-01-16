@@ -25,3 +25,51 @@ detX <- det(X)
 #detX = -2. Therefore, it is not singular. 
 
 
+#section three : sample statistics
+
+library(MASS)
+data(crabs)
+head(crabs)
+
+fl_xbar <- mean(crabs$FL)
+#fl_xbar = 15.583
+rw_xbar <- mean(crabs$RW)
+#rw_xbar= 12.7385
+cl_xbar <- mean(crabs$CL) 
+#32.1055
+cw_xbar <- mean(crabs$CW)
+#36.4145
+bd_xbar <- mean(crabs$BD) 
+#14.0305
+
+#question compute sample covariance
+X_matrix  <- matrix(c(crabs$FL, crabs$RW, crabs$CL, crabs$CW, crabs$BD), nrow = 200, byrow=TRUE)
+dim(X_matrix)
+S <- 1/(200-1) * t(X_matrix)%*%(diag(200)-(1/200)*rep(1,200)%*%t(rep(1,200)))%*% X_matrix
+S
+#alternatively use cov(X)
+S_1 <- cov(X_matrix)
+S_1
+#[1,] 121.6804 122.8717 124.0665 125.3403 128.9379
+#[2,] 122.8717 124.9961 126.1000 127.4494 131.2598
+#[3,] 124.0665 126.1000 127.9446 129.0003 132.8458
+#[4,] 125.3403 127.4494 129.0003 130.8131 134.4104
+#[5,] 128.9379 131.2598 132.8458 134.4104 138.9959
+
+#13. Compute the sample correlation matrix R. 
+R = cor(X_matrix)
+#[1,] 1.0000000 0.9963079 0.9943361 0.9934698 0.9914469
+#[2,] 0.9963079 1.0000000 0.9971391 0.9966986 0.9958238
+#[3,] 0.9943361 0.9971391 1.0000000 0.9971350 0.9961755
+#[4,] 0.9934698 0.9966986 0.9971350 1.0000000 0.9967961
+#[5,] 0.9914469 0.9958238 0.9961755 0.9967961 1.0000000
+
+
+#14. Find the total sample variance.
+Total_sample_variance <- sum(diag(S))
+#= 644.43
+
+
+# 15. Find the generalized sample variance.
+generalised_sample_variance = det(S)
+
