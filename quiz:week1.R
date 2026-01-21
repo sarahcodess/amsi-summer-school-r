@@ -73,3 +73,4 @@ Total_sample_variance <- sum(diag(S))
 # 15. Find the generalized sample variance.
 generalised_sample_variance = det(S)
 
+#35.13111
