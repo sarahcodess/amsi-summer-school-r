@@ -208,4 +208,11 @@ pvalue <- pf( T_sq * (n_number - p_number + 1) / ((n_number - 1) * (p_number - 1
 
 pvalue
  
- 
+#Construct the 95% simultaneous confidence intervals for the contrasts representing the number format effect, the parity type effect and the interaction effect. Interpret the resulting intervals.
+low=up=rep(0,3) 
+for (i in 1:3)
+{ 
+	low[i]=(C%*%xbar)[i,]-sqrt(T2_critical)*sqrt((C%*%S%*%t(C))[i,i]/n_number) 
+	up[i]=(C%*%xbar)[i,]+sqrt(T2_critical)*sqrt((C%*%S%*%t(C))[i,i]/n_number)
+	 } 
+	cbind(low,up)
