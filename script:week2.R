@@ -215,4 +215,107 @@ for (i in 1:3)
 	low[i]=(C%*%xbar)[i,]-sqrt(T2_critical)*sqrt((C%*%S%*%t(C))[i,i]/n_number) 
 	up[i]=(C%*%xbar)[i,]+sqrt(T2_critical)*sqrt((C%*%S%*%t(C))[i,i]/n_number)
 	 } 
-	cbind(low,up)
+intervals <- cbind(low,up)
+intervals
+
+#For each subject, construct three difference scores corresponding to the number format contrast, the parity type #contrast, and the interaction contrast. Is a multivariate normal distribution a reasonable population model for these #data? Explain.
+
+Y = t(C %*% t(number.parity))
+
+qqnorm(Y[,1])
+qqline(Y[,1])
+qqnorm(Y[,2])
+qqline(Y[,2])
+
+qqnorm(Y[,3])
+qqline(Y[,3])
+
+#TURTLE DATA 
+
+turtle_data <- read.table('turtles.txt', header = TRUE)
+
+
+#test for equality of the two population mean vectors using alpha = 0.05
+turtle_female <- turtle_data[turtle_data$sex == "female",]
+p = ncol(turtle_female[1:3])
+n_female = nrow(turtle_female)
+turtle_male <- turtle_data[turtle_data$sex == "male", ]
+n_male = nrow(turtle_male)
+x_bar_female = apply(turtle_female[1:3], 2, mean)
+
+x_bar_male = apply(turtle_male[1:3], 2, mean)
+
+#ok so now we have the two mean sample vectors for male and female.  n_female and n_male are both small.  test two population mean vectors using the sample we have 
+
+S_female = cov(turtle_female[1:3])
+S_male = cov(turtle_male[1:3])
+S_p =  ((n_female-1)*S_female + (n_male - 1)*S_male) / (n_male + n_female -2)
+
+T_sq_turtle = t(x_bar_female - x_bar_male) %*% solve(((1/n_female)+ (1/n_male))* S_p) %*% (x_bar_female - x_bar_male)
+
+
+#cauclate critical value upper 5% for Hotellings t2 '
+F_value = qf(0.05, p , n_female + n_male - 1, lower.tail = FALSE)
+T2_critical_turtle =( ((n_female + n_male - 2) * p )/ (n_female + n_male - 1- p )) * F_value
+
+#  8.789205 is critical value. T^2 value = 72. since T^2 is > T_2 critical value, we reject the null hypothesis. 
+
+#note to self: If the mean difference is big compared to the typical within-group scatter (accounting for correlation),T2  is big hence reject. 
+#b. If the hypothesis in part (a) is rejected, find the linear combination of
+# mean components most responsible for rejecting H_0
+
+d <- matrix(x_bar_female - x_bar_male, ncol = 1)
+S_p
+a <- solve(S_p) %*% d
+a
+
+#Find simultaneous confidence intervals for the component mean differences. Compare with the Bonferroni intervals. (Hint: You may wish to consider logarithmic transformations of the observations.)
+
+#transform to log
+
+female_log = log(turtle_female[1:3])
+female_log_mean = apply(female_log,2,mean)
+male_log = log(turtle_male[1:3])
+male_log_mean = apply(male_log,2,mean)
+
+
+S_female_new = cov(female_log)
+S_male_new = cov(male_log)
+S_p_new =  ((n_female-1)*S_female_new + (n_male - 1)*S_male_new) / (n_male + n_female -2)
+
+#length
+length.lower = female_log_mean[1] - male_log_mean[1]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) 
+length.upper = female_log_mean[1] - male_log_mean[1]+sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) 
+
+
+width.lower=female_log_mean[2] - male_log_mean[2]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) 
+width.upper=female_log_mean[2] -male_log_mean[2]+sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) 
+height.lower=female_log_mean[3] - male_log_mean[3]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) 
+height.upper=female_log_mean[3] -male_log_mean[3]+sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[3,3])
+
+#bonferroni CI
+
+t_value = qt(0.05/(2*p), n_female+n_male - 2, lower.tail=F)
+
+blength.lower = female_log_mean[1] - male_log_mean[1]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) 
+blength.upper =  female_log_mean[1] - male_log_mean[1]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) 
+
+bwidth.lower = female_log_mean[2] - male_log_mean[2]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) 
+b.widthupper =  female_log_mean[2] - male_log_mean[2]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) 
+
+bheight.lower = female_log_mean[3] - male_log_mean[3]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) 
+bheight.upper =  female_log_mean[3] - male_log_mean[3]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) 
+
+bonferronici.length = cbind(blength.lower, blength.upper)
+bonferronici.length
+
+bonferronici.width= cbind(bwidth.lower, b.widthupper)
+bonferronici.width
+bonferronici.height= cbind(bheight.lower, bheight.upper)
+bonferronici.height
+
+
+
+
+	
+	
