@@ -1,0 +1,1022 @@
+cbind(mu.L,mu.U)#
+cbind(lower23, upper23)#
+cbind(lower34, upper34)#
+cbind(lower45, upper45)
+#Bonferroni Confidence INtervals #
+X = bear[,5:8]#
+x_bar = apply(X, 2, mean)#
+m = 7#
+tstar = qt(0.05/(2*m), df = 6, lower.tail= FALSE)#
+#
+mu.L=x_bar-tstar*matrix(sqrt(diag(S/n)),ncol=1)#
+mu.U = x_bar+tstar*matrix(sqrt(diag(S/n)),ncol=1)#
+dif23 = ((X$L3-X$L2))#
+dif34 =  ((X$L4-X$L3))#
+dif45 = (X$L5 - X$L4)#
+#
+dif23 = X$L3 - X$L2#
+#
+mean23 = mean(dif23)#
+se23   = sqrt(var(dif23) / (n))#
+#
+lower23 = mean23 - tstar * se23#
+upper23 = mean23 + tstar * se23#
+#
+dif34 = X$L4 - X$L3#
+#
+mean34 = mean(dif34)#
+se34   = sd(dif34) / sqrt(n)#
+#
+lower34 = mean34 - tstar * se34#
+upper34 = mean34 + tstar * se34#
+dif45 = X$L5 - X$L4#
+#
+mean45 = mean(dif45)#
+se45   = sd(dif45) / sqrt(n)#
+#
+lower45 = mean45 - tstar * se45#
+upper45 = mean45 + tstar * se45#
+cbind(mu.L,mu.U)#
+mean23 = cbind(lower23, upper23)#
+mean34= cbind(lower34, upper34)#
+mean45= cbind(lower45, upper45)#
+plot(NA, NA, asp = 1,#
+     xlim = c(lower23, upper23),#
+     ylim = c(lower45, upper45),#
+     xlab = "Mean increase 2→3",#
+     ylab = "Mean increase 4→5")#
+#
+rect(lower23, lower45, upper23, upper45, lty = 2)#
+#
+## plot the mean point#
+points(mean23, mean45, pch = 19)
+#Confidence Region#
+ #mu : n#
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+X = cbind(dif23, dif45)#
+xbar = colMeans(X)#
+S = cov(xbar)#
+n <- 7; p <- 2#
+#
+cutoff = (p*(n-1)/(n-p)) * qf(.95, p, n-p)#
+ell <- ellipse(S/n, centre = xbar, t = sqrt(cutoff))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+X = cbind(dif23, dif45)#
+xbar = colMeans(X)#
+S = cov(xbar)#
+n <- 7; p <- 2#
+#
+cutoff = (p*(n-1)/(n-p)) * qf(.95, p, n-p)#
+ell <- ellipse(S/n, centre = xbar, t = sqrt(cutoff))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+#Bonferroni Confidence INtervals #
+X = bear[,5:8]#
+x_bar = apply(X, 2, mean)#
+m = 7#
+tstar = qt(0.05/(2*m), df = 6, lower.tail= FALSE)#
+#
+mu.L=x_bar-tstar*matrix(sqrt(diag(S/n)),ncol=1)#
+mu.U = x_bar+tstar*matrix(sqrt(diag(S/n)),ncol=1)#
+dif23 = ((X$L3-X$L2))#
+dif34 =  ((X$L4-X$L3))#
+dif45 = (X$L5 - X$L4)#
+#
+dif23 = X$L3 - X$L2#
+#
+mean23 = mean(dif23)#
+se23   = sqrt(var(dif23) / (n))#
+#
+lower23 = mean23 - tstar * se23#
+upper23 = mean23 + tstar * se23#
+#
+dif34 = X$L4 - X$L3#
+#
+mean34 = mean(dif34)#
+se34   = sd(dif34) / sqrt(n)#
+#
+lower34 = mean34 - tstar * se34#
+upper34 = mean34 + tstar * se34#
+dif45 = X$L5 - X$L4#
+#
+mean45 = mean(dif45)#
+se45   = sd(dif45) / sqrt(n)#
+#
+lower45 = mean45 - tstar * se45#
+upper45 = mean45 + tstar * se45#
+cbind(mu.L,mu.U)#
+mean23 = cbind(lower23, upper23)#
+mean34= cbind(lower34, upper34)#
+mean45= cbind(lower45, upper45)#
+plot(NA, NA, asp = 1,#
+     xlim = c(lower23, upper23),#
+     ylim = c(lower45, upper45),#
+     xlab = "Mean increase 2→3",#
+     ylab = "Mean increase 4→5")#
+#
+rect(lower23, lower45, upper23, upper45, lty = 2)#
+#
+## plot the mean point#
+points(mean23, mean45, pch = 19)
+#Confidence Region#
+ #mu : n#
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+X = cbind(dif23, dif45)#
+xbar = colMeans(X)#
+S = cov(xbar)#
+n <- 7; p <- 2#
+#
+cutoff = (p*(n-1)/(n-p)) * qf(.95, p, n-p)#
+ell <- ellipse(S/n, centre = xbar, t = sqrt(cutoff))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+X = cbind(dif23, dif45)#
+xbar = colMeans(X)#
+S = cov(xbar)#
+n <- 7; p <- 2#
+#
+cutoff = sqrt((p*(n-1)/(n-p)) * qf(.95, p, n-p))#
+ell <- ellipse(S/n, centre = xbar, t = (cutoff)/sqrt(n))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+#Confidence Region#
+ #mu : n#
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+X = cbind(dif23, dif45)#
+xbar = colMeans(X)#
+S = cov(xbar)#
+n <- 7; p <- 2#
+#
+cutoff = sqrt((p*(n-1)/(n-p)) * qf(.95, p, n-p))#
+ell <- ellipse(S, centre = xbar, t = (cutoff)/sqrt(n))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+xbar = colMeans(X)
+xbar
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+X = cbind(dif23, dif45)#
+xbar = colMeans(X)#
+S = cov(X)#
+n <- 7; p <- 2#
+#
+cutoff = sqrt((p*(n-1)/(n-p)) * qf(.95, p, n-p))#
+ell <- ellipse(S, centre = xbar, t = (cutoff)/sqrt(n))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+Difference = cbind(dif23, dif45)#
+xbar = colMeans(Difference)#
+S = cov(Difference)#
+n <- 7; p <- 2#
+#
+cutoff = sqrt((p*(n-1)/(n-p)) * qf(.95, p, n-p))#
+ell <- ellipse(S, centre = xbar, t = (cutoff)/sqrt(n))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+bear <- read.table("bear.txt", header = TRUE)#
+X = bear[,5:8]
+#Confidence Region#
+ #mu : n#
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+Difference = cbind(dif23, dif45)#
+xbar = colMeans(Difference)#
+S = cov(Difference)#
+n <- 7; p <- 2#
+#
+cutoff = sqrt((p*(n-1)/(n-p)) * qf(.95, p, n-p))#
+ell <- ellipse(S, centre = xbar, t = (cutoff)/sqrt(n))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+Difference = cbind(dif23, dif45)#
+xbar = colMeans(Difference)#
+S = cov(Difference)#
+n <- 7; p <- 2#
+#
+cutoff = sqrt((p*(n-1)/(n-p)) * qf(.95, p, n-p))#
+ell <- ellipse(S, centre = xbar, t = (cutoff)/sqrt(n))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+S = cov(Difference)
+S
+c=sqrt((p*(n-1)/(n-p))*qf(0.95,p,n-p))#
+a=matrix(c(-1,1,0,0),ncol=1) b=matrix(c(0,0,-1,1),ncol=1) meandiff=c(t(a)%*%xbar,t(b)%*%xbar) Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2) plot(ellipse(Sdiff,centre=meandiff,t=c/sqrt(n)),type="l",xlab="increase 2-3 years",ylab="i ncrease 4-5 years") points(meandiff[1],meandiff[2])
+c=sqrt((p*(n-1)/(n-p))*qf(0.95,p,n-p))#
+a=matrix(c(-1,1,0,0),ncol=1) #
+b=matrix(c(0,0,-1,1),ncol=1)#
+ meandiff=c(t(a)%*%xbar,t(b)%*%xbar) #
+ Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2) plot(ellipse(Sdiff,centre=meandiff,t=c/sqrt(n)),type="l",xlab="increase 2-3 years",ylab="i ncrease 4-5 years") points(meandiff[1],meandiff[2])
+c=sqrt((p*(n-1)/(n-p))*qf(0.95,p,n-p))#
+a=matrix(c(-1,1,0,0),ncol=1) #
+b=matrix(c(0,0,-1,1),ncol=1)#
+ meandiff=c(t(a)%*%xbar,t(b)%*%xbar) #
+ Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2) #
+ plot(ellipse(Sdiff,centre=meandiff,t=c/sqrt(n)),type="l",xlab="increase 2-3 years",ylab="i ncrease 4-5 years") points(meandiff[1],meandiff[2])
+library(ellipse)
+c=sqrt((p*(n-1)/(n-p))*qf(0.95,p,n-p))#
+a=matrix(c(-1,1,0,0),ncol=1) #
+b=matrix(c(0,0,-1,1),ncol=1)#
+ meandiff=c(t(a)%*%xbar,t(b)%*%xbar) #
+ Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2) #
+ plot(ellipse(Sdiff,centre=meandiff,t=c/sqrt(n)),type="l",xlab="increase 2-3 years",ylab="i ncrease 4-5 years") points(meandiff[1],meandiff[2])
+c=sqrt((p*(n-1)/(n-p))*qf(0.95,p,n-p))#
+a=matrix(c(-1,1,0,0),ncol=1) #
+b=matrix(c(0,0,-1,1),ncol=1)#
+ meandiff=c(t(a)%*%xbar,t(b)%*%xbar) #
+ Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2) #
+ plot(ellipse(Sdiff,centre=meandiff,t=c/sqrt(n)),type="l",xlab="increase 2-3 years",ylab="increase 4-5 years") points(meandiff[1],meandiff[2])
+c=sqrt((p*(n-1)/(n-p))*qf(0.95,p,n-p))#
+a=matrix(c(-1,1,0,0),ncol=1) #
+b=matrix(c(0,0,-1,1),ncol=1)#
+ meandiff=c(t(a)%*%xbar,t(b)%*%xbar) #
+ Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2)
+X <- bear[, 5:8] # Length variables L2–L5 #
+n <- dim(X)[1] # Sample size #
+p <- dim(X)[2] # Dimension #
+xbar <- apply(X, 2, mean)#
+c=sqrt((p*(n-1)/(n-p))*qf(0.95,p,n-p))#
+a=matrix(c(-1,1,0,0),ncol=1) #
+b=matrix(c(0,0,-1,1),ncol=1)#
+ meandiff=c(t(a)%*%xbar,t(b)%*%xbar) #
+ Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2) #
+ plot(ellipse(Sdiff,centre=meandiff,t=c/sqrt(n)),type="l",xlab="increase 2-3 years",ylab="increase 4-5 years") points(meandiff[1],meandiff[2])
+X <- bear[, 5:8] # Length variables L2–L5 #
+n <- dim(X)[1] # Sample size #
+p <- dim(X)[2] # Dimension #
+xbar <- apply(X, 2, mean)#
+c=sqrt((p*(n-1)/(n-p))*qf(0.95,p,n-p))#
+a=matrix(c(-1,1,0,0),ncol=1) #
+b=matrix(c(0,0,-1,1),ncol=1)#
+ meandiff=c(t(a)%*%xbar,t(b)%*%xbar)
+Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2)
+S= cov(X)
+Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2)
+Sdiff
+plot(ellipse(Sdiff,centre=meandiff,t=c/sqrt(n)),type="l",xlab="increase 2-3 years",ylab="increase 4-5 years")
+points(meandiff[1],meandiff[2])
+meandiff
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+Difference = cbind(dif23, dif45)#
+xbar = colMeans(Difference)#
+S = cov(Difference)#
+n <- 7; p <- 2
+S
+cutoff = sqrt((p*(n-1)/(n-p)) * qf(.95, p, n-p))#
+ell <- ellipse(S, centre = xbar, t = (cutoff)/sqrt(n))
+cutoff
+c
+X <- bear[, 5:8] # Length variables L2–L5 #
+n <- dim(X)[1] # Sample size #
+p <- dim(X)[2] # Dimension #
+xbar <- apply(X, 2, mean)#
+c=sqrt((p*(n-1)/(n-p))*qf(0.95,p,n-p))#
+a=matrix(c(-1,1,0,0),ncol=1) #
+b=matrix(c(0,0,-1,1),ncol=1)#
+ meandiff=c(t(a)%*%xbar,t(b)%*%xbar) #
+ S= cov(X)#
+ Sdiff=matrix(c(t(a)%*%S%*%a, t(a)%*%S%*%b, t(b)%*%S%*%a, t(b)%*%S%*%b),2,2) #
+ plot(ellipse(Sdiff,centre=meandiff,t=c/sqrt(n)),type="l",xlab="increase 2-3 years",ylab="increase 4-5 years") points(meandiff[1],meandiff[2])#
+ meandiff
+n
+p
+#Confidence Region#
+ #mu : n#
+dif23 = ((X$L3-X$L2))#
+dif45 = (X$L5 - X$L4)#
+Difference = cbind(dif23, dif45)#
+xbar = colMeans(Difference)#
+S = cov(Difference)#
+n <- 7; p <- 4#
+#
+cutoff = sqrt((p*(n-1)/(n-p)) * qf(.95, p, n-p))#
+ell <- ellipse(S, centre = xbar, t = (cutoff)/sqrt(n))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+points(xbar[1], xbar[2], pch=19)
+#Bonferroni Confidence INtervals #
+X = bear[,5:8]#
+x_bar = apply(X, 2, mean)#
+m = 7#
+tstar = qt(0.05/(2*m), df = 6, lower.tail= FALSE)#
+#
+mu.L=x_bar-tstar*matrix(sqrt(diag(S/n)),ncol=1)#
+mu.U = x_bar+tstar*matrix(sqrt(diag(S/n)),ncol=1)#
+dif23 = ((X$L3-X$L2))#
+dif34 =  ((X$L4-X$L3))#
+dif45 = (X$L5 - X$L4)#
+#
+dif23 = X$L3 - X$L2#
+#
+mean23 = mean(dif23)#
+se23   = sqrt(var(dif23) / (n))#
+#
+lower23 = mean23 - tstar * se23#
+upper23 = mean23 + tstar * se23#
+#
+dif34 = X$L4 - X$L3#
+#
+mean34 = mean(dif34)#
+se34   = sd(dif34) / sqrt(n)#
+#
+lower34 = mean34 - tstar * se34#
+upper34 = mean34 + tstar * se34#
+dif45 = X$L5 - X$L4#
+#
+mean45 = mean(dif45)#
+se45   = sd(dif45) / sqrt(n)#
+#
+lower45 = mean45 - tstar * se45#
+upper45 = mean45 + tstar * se45#
+cbind(mu.L,mu.U)#
+ci_23 = cbind(lower23, upper23)#
+ci_34= cbind(lower34, upper34)#
+ci_45= cbind(lower45, upper45)#
+plot(NA, NA, asp = 1,#
+     xlim = c(lower23, upper23),#
+     ylim = c(lower45, upper45),#
+     xlab = "Mean increase 2→3",#
+     ylab = "Mean increase 4→5")#
+#
+rect(lower23, lower45, upper23, upper45, lty = 2)#
+#
+## plot the mean point#
+points(mean23, mean45, pch = 19)
+rect(lower23, lower45, upper23, upper45, lty = 2)
+plot(ell, type="l", asp=1,#
+     xlab="Mean increase 2→3",#
+     ylab="Mean increase 4→5")#
+rect(lower23, lower45, upper23, upper45, lty=2)#
+points(meandiff[1], meandiff[2], pch=19)
+kites <- read.table("kites.txt", header=TRUE)
+kites
+X_kites <- kites[,2:3]
+bear <- read.table("bear.txt", header = TRUE)
+bear
+n_kites = nrows(kites)
+n_kites = nrow(kites)
+p_kites = ncol(kites)
+p_kites
+x_bar_kites = colmeans(kites)
+x_bar_kites = apply(kites, mean, 2)
+x_bar_kites = apply(kites, 2, mean)
+x_bar_kites
+cov_kites = cov(x_bar_kites)
+cov_kites = cov(kites)
+cov_kites
+#KITES DATA#
+#find and sketch 95% confidence ellipse for population mean#
+kites <- read.table("kites.txt", header=TRUE)#
+#
+ n_kites = nrow(kites)#
+ p_kites = ncol(kites)#
+ x_bar_kites = apply(kites, 2, mean)#
+ sample_cov_kites = cov(kites)#
+critical_value = sqrt((p_kites*(n_kites-1)/(n_kites-p_kites)) * qf(.95, p_kites, n_kites-p_kites))#
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean tail",#
+     ylab="Mean wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)
+#KITES DATA#
+#find and sketch 95% confidence ellipse for population mean#
+kites <- read.table("kites.txt", header=TRUE)#
+#
+ n_kites = nrow(kites)#
+ p_kites = ncol(kites)#
+ x_bar_kites = apply(kites, 2, mean)#
+ sample_cov_kites = cov(kites)#
+critical_value = sqrt((p_kites*(n_kites-1)/(n_kites-p_kites)) * qf(.95, p_kites, n_kites-p_kites))#
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="Mean tail",#
+     ylab="Mean wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+points(190,275,col="blue",pch=4,lwd=3)
+x_bar_kites[1]
+x_bar_kites(1)
+kite_mu1_lower = x_bar_kites[1] - sqrt((p_kites*(n_kites-1))/(n_kites - p_kites)*qf(0.95,p_kites, n_kites-p_kites)) * sqrt(S[1,1]/n_kites)
+kite_mu1_lower
+kite_mu1_upper = x_bar_kites[1] + sqrt((p_kites*(n_kites-1))/(n_kites - p_kites)*qf(0.95,p_kites, n_kites-p_kites)) * sqrt(S[1,1]/n_kites)
+kite_mu1_upper
+kite_mu2_lower = x_bar_kites[2] - sqrt((p_kites*(n_kites-1))/(n_kites - p_kites)*qf(0.95,p_kites, n_kites-p_kites)) * sqrt(S[2,2]/n_kites)#
+kite_mu2_upper = x_bar_kites[2] + sqrt((p_kites*(n_kites-1))/(n_kites - p_kites)*qf(0.95,p_kites, n_kites-p_kites)) * sqrt(S[2,2]/n_kites)
+mu1_ci = c(kite_mu1_lower, kite_mu1_upper)#
+mu_ci
+mu1_ci = c(kite_mu1_lower, kite_mu1_upper)
+mu_ci
+mu1_ci
+mu2_ci = c(kite_mu2_lower, kite_mu2_upper)#
+mu2_ci
+kite_mu1_lower = x_bar_kites[1] - sqrt((p_kites*(n_kites-1))/(n_kites - p_kites)*qf(0.95,p_kites, n_kites-p_kites)) * sqrt(sample_cov_kites[1,1]/n_kites)#
+kite_mu1_upper = x_bar_kites[1] + sqrt((p_kites*(n_kites-1))/(n_kites - p_kites)*qf(0.95,p_kites, n_kites-p_kites)) * sqrt(sample_cov_kites[1,1]/n_kites)#
+#
+kite_mu2_lower = x_bar_kites[2] - sqrt((p_kites*(n_kites-1))/(n_kites - p_kites)*qf(0.95,p_kites, n_kites-p_kites)) * sqrt(sample_cov_kites[2,2]/n_kites)#
+kite_mu2_upper = x_bar_kites[2] + sqrt((p_kites*(n_kites-1))/(n_kites - p_kites)*qf(0.95,p_kites, n_kites-p_kites)) * sqrt(sample_cov_kites[2,2]/n_kites)#
+#
+mu1_ci = c(kite_mu1_lower, kite_mu1_upper)#
+mu1_ci#
+mu2_ci = c(kite_mu2_lower, kite_mu2_upper)#
+mu2_ci
+#bonferroni intervals 95%#
+ t_value = qt(0.05/(2*p_kites), df = n_kites-1, lower.tail= FALSE)#
+ bon_mu1_lower = x_bar_kites[1] - t_value*sqrt(sample_cov_kites[1,1]/n_kites)#
+bon_mu1_upper = x_bar_kites[1] + t_value*sqrt(sample_cov_kites[1,1]/n_kites)#
+ bon_mu2_lower = x_bar_kites[2] - t_value*sqrt(sample_cov_kites[2,2]/n_kites)#
+bon_mu2_upper = x_bar_kites[2] + t_value*sqrt(sample_cov_kites[2,2]/n_kites)#
+bon_mu1_ci = c(bon_mu1_lower, bon_mu1_upper)#
+bon_mu2_ci = c(bon_mu2_lower, bon_mu2_upper)#
+bon_mu1_ci#
+bon_mu2_ci
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[1], lty=2)
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[1], lty=2)
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], lty=2)
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], col = 'red',lty=2)legend("topright",#
+       legend = c("Hotelling T^2 ellipse",#
+                  "Simultaneous CI (T^2)",#
+                  "Bonferroni CI"),#
+       lty    = c(1, 2, 2),#
+       col    = c("black", "black", "red"),#
+       lwd    = c(1, 1, 2),#
+       bty    = "n")
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+legend("topright",#
+       legend = c("Hotelling T^2 ellipse",#
+                  "Simultaneous CI (T^2)",#
+                  "Bonferroni CI"),#
+       lty    = c(1, 2, 2),#
+       col    = c("black", "black", "red"),#
+       lwd    = c(1, 1, 2),#
+       bty    = "n")#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], col = 'red',lty=2)
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], col = 'red', lty=2)
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], col = 'red', lty=2)
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], col = 'red', lwd = 2,lty=2)
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], border = 'red', lty=2)
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], border = 'red', lty=2)#
+legend("topright",#
+       legend = c("Hotelling T^2 ellipse",#
+                  "Simultaneous CI rectangle",#
+                  "Bonferroni CI rectangle"),#
+       lty    = c(1, 2, 2),#
+       col    = c("black", "black", "red"),#
+       lwd    = c(1, 1, 2),#
+       bty    = "n")
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], border = 'red', lty=2)#
+legend("topleft",#
+       legend = c("Hotelling T^2 ellipse",#
+                  "Simultaneous CI rectangle",#
+                  "Bonferroni CI rectangle"),#
+       lty    = c(1, 2, 2),#
+       col    = c("black", "black", "red"),#
+       lwd    = c(1, 1, 2),#
+       bty    = "n")
+ell <- ellipse(sample_cov_kites, centre = x_bar_kites, t = (critical_value)/sqrt(n_kites))#
+#
+plot(ell, type="l", asp=1,#
+     xlab="tail",#
+     ylab="wing")#
+points(x_bar_kites[1], x_bar_kites[2], pch=19)#
+#
+rect(mu1_ci[1], mu2_ci[1], mu1_ci[2], mu2_ci[2], lty=2)#
+rect(bon_mu1_ci[1], bon_mu2_ci[1], bon_mu1_ci[2], bon_mu2_ci[2], border = 'red', lty=2)#
+legend("bottomleft",#
+       legend = c("Hotelling T^2 ellipse",#
+                  "Simultaneous CI rectangle",#
+                  "Bonferroni CI rectangle"),#
+       lty    = c(1, 2, 2),#
+       col    = c("black", "black", "red"),#
+       lwd    = c(1, 1, 2),#
+       bty    = "n")
+qqnorm(kites$tail)
+qqline(kites$tail)
+qqnorm(kites$wing)
+qqnline(kites$wing)
+qqline(kites$wing)
+plot(kites)
+#Number parity data #
+number.parity <- read.table("number_parity.text", header=TRUE)
+number.parity
+#Number parity data #
+number.parity <- read.table("number_parity.text", header=TRUE)#
+#test for treatment effects using a repeatedmeasures design. alpha - 0.05#
+#
+#contrasts #
+#parity effect = (mu_3+ mu_1) - (mu4 + mu2)#
+#formateffect = (mu2+mu1) - (mu4 + mu3)#
+#interactioneffect = (mu2+mu3) - (mu4+mu1)#
+#
+number.parity
+number.parity
+number.parity <- read.table("number_parity.text", header=TRUE)
+#Number parity data #
+number.parity <- read.table("number_parity.txt", header=TRUE)#
+#test for treatment effects using a repeatedmeasures design. alpha - 0.05#
+#
+#contrasts #
+#parity effect = (mu_3+ mu_1) - (mu4 + mu2)#
+#formateffect = (mu2+mu1) - (mu4 + mu3)#
+#interactioneffect = (mu2+mu3) - (mu4+mu1)#
+#
+number.parity
+n_number = nrows(number.parity)
+n_number = nrow(number.parity)
+n_number = nrow(number.parity)#
+p_number = ncol(number.parity)
+p_number
+xbar = matrix(apply(number.parity,2,mean))
+xbar
+xbar = (apply(number.parity,2,mean))
+xbar
+S = cov(number.parity)
+T_sq = n_number * t(C %*% xbar) %*% solve(C %*% S %*% t(C)) %*% (C %*% xbar)
+T_sq
+#compute T^2 statistic #
+T_sq = n_number * t(C %*% xbar) %*% solve(C %*% S %*% t(C)) %*% (C %*% xbar)#
+T_sq#
+# Obtain upper 5% percentile for Hotelling's T2#
+ F_stat =((q-1)*(n-1)/(n-q+1))*qf(0.05,q-1,n-q+1,lower.tail=F) #
+ F_stat
+xbar = (apply(number.parity,2,mean))#
+S = cov(number.parity)#
+#compute T^2 statistic #
+T_sq = n_number * t(C %*% xbar) %*% solve(C %*% S %*% t(C)) %*% (C %*% xbar)#
+T_sq#
+# Obtain upper 5% percentile for Hotelling's T2#
+ F_stat =((p-1)*(n-1)/(n-p+1))*qf(0.05,p-1,n-p+1,lower.tail=F) #
+ F_stat
+S = cov(number.parity)#
+#compute T^2 statistic #
+T_sq = n_number * t(C %*% xbar) %*% solve(C %*% S %*% t(C)) %*% (C %*% xbar)#
+T_sq#
+# Obtain upper 5% percentile for Hotelling's T2#
+ F_stat =((p_number-1)*(n_number-1)/(n_number-p_number+1))*qf(0.05,p_number-1,n_number-p_number+1,lower.tail=F) #
+ F_stat
+#p value is just the prob of observing more than the T2_critical#
+pvalue <- pf( T_sq * (n_number - p_number + 1) / ((n_number - 1) * (p_number - 1)),#
+              df1 = p_number - 1,#
+              df2 = n_number - p_number + 1,#
+              lower.tail = FALSE )#
+#
+pvalue
+#parity effect = (mu_3+ mu_1) - (mu4 + mu2)#
+#formateffect = (mu2+mu1) - (mu4 + mu3)#
+#interactioneffect = (mu2+mu3) - (mu4+mu1)#
+#
+n_number = nrow(number.parity)#
+p_number = ncol(number.parity)#
+C=matrix(c(-1,1,-1,1,-1,-1,1,1,-1,1,1,-1),nrow=3,ncol=4,byrow=TRUE)#
+xbar = (apply(number.parity,2,mean))#
+S = cov(number.parity)#
+#compute T^2 statistic, ie T2 observed  #
+T_sq = n_number * t(C %*% xbar) %*% solve(C %*% S %*% t(C)) %*% (C %*% xbar)#
+T_sq#
+# Obtain upper 5% percentile for Hotelling's T2#
+T2_critical=((p_number-1)*(n_number-1)/(n_number-p_number+1))*qf(0.05,p_number-1,n_number-p_number+1,lower.tail=F) #
+T2_critical#
+ #compute p value #
+ #p value is just the prob of observing more than the t2 observed#
+pvalue <- pf( T_sq * (n_number - p_number + 1) / ((n_number - 1) * (p_number - 1)),#
+              df1 = p_number - 1,#
+              df2 = n_number - p_number + 1,#
+              lower.tail = FALSE )#
+#
+pvalue
+rep(0,3)
+(C%*%xbar)[1,]
+(C%*%xbar)[2,]
+(C%*%xbar)[3,]
+(C%*%xbar)[4,]
+(C%*%xbar)[1,]
+(C%*%xbar)
+low=up=rep(0,3) for (i in 1:3){ low[i]=(C%*%xbar)[i,]-sqrt(f.t2)*sqrt((C%*%S%*%t(C))[i,i]/n) up[i]=(C%*%xbar)[i,]+sqrt(f.t2)*sqrt((C%*%S%*%t(C))[i,i]/n) } cbind(low,up)
+low=up=rep(0,3) #
+for (i in 1:3)#
+{ #
+	low[i]=(C%*%xbar)[i,]-sqrt(T2_critical)*sqrt((C%*%S%*%t(C))[i,i]/n) #
+	up[i]=(C%*%xbar)[i,]+sqrt(f.t2)*sqrt((C%*%S%*%t(C))[i,i]/n)#
+	 } #
+	cbind(low,up)
+n_number = nrow(number.parity)#
+p_number = ncol(number.parity)#
+C=matrix(c(-1,1,-1,1,-1,-1,1,1,-1,1,1,-1),nrow=3,ncol=4,byrow=TRUE)#
+xbar = (apply(number.parity,2,mean))#
+S = cov(number.parity)#
+#compute T^2 statistic, ie T2 observed  #
+T_sq = n_number * t(C %*% xbar) %*% solve(C %*% S %*% t(C)) %*% (C %*% xbar)#
+T_sq#
+# Obtain upper 5% percentile for Hotelling's T2#
+T2_critical=((p_number-1)*(n_number-1)/(n_number-p_number+1))*qf(0.05,p_number-1,n_number-p_number+1,lower.tail=F) #
+T2_critical#
+ #compute p value #
+ #p value is just the prob of observing more than the t2 observed#
+pvalue <- pf( T_sq * (n_number - p_number + 1) / ((n_number - 1) * (p_number - 1)),#
+              df1 = p_number - 1,#
+              df2 = n_number - p_number + 1,#
+              lower.tail = FALSE )#
+#
+pvalue#
+#Construct the 95% simultaneous confidence intervals for the contrasts representing the number format effect, the parity type effect and the interaction effect. Interpret the resulting intervals.#
+low=up=rep(0,3) #
+for (i in 1:3)#
+{ #
+	low[i]=(C%*%xbar)[i,]-sqrt(T2_critical)*sqrt((C%*%S%*%t(C))[i,i]/n) #
+	up[i]=(C%*%xbar)[i,]+sqrt(f.t2)*sqrt((C%*%S%*%t(C))[i,i]/n)#
+	 } #
+	cbind(low,up)
+S = cov(number.parity)#
+#compute T^2 statistic, ie T2 observed  #
+T_sq = n_number * t(C %*% xbar) %*% solve(C %*% S %*% t(C)) %*% (C %*% xbar)#
+T_sq#
+# Obtain upper 5% percentile for Hotelling's T2#
+T2_critical=((p_number-1)*(n_number-1)/(n_number-p_number+1))*qf(0.05,p_number-1,n_number-p_number+1,lower.tail=F) #
+T2_critical#
+ #compute p value #
+ #p value is just the prob of observing more than the t2 observed#
+pvalue <- pf( T_sq * (n_number - p_number + 1) / ((n_number - 1) * (p_number - 1)),#
+              df1 = p_number - 1,#
+              df2 = n_number - p_number + 1,#
+              lower.tail = FALSE )#
+#
+pvalue#
+#Construct the 95% simultaneous confidence intervals for the contrasts representing the number format effect, the parity type effect and the interaction effect. Interpret the resulting intervals.#
+low=up=rep(0,3) #
+for (i in 1:3)#
+{ #
+	low[i]=(C%*%xbar)[i,]-sqrt(T2_critical)*sqrt((C%*%S%*%t(C))[i,i]/n_number) #
+	up[i]=(C%*%xbar)[i,]+sqrt(T2_critical)*sqrt((C%*%S%*%t(C))[i,i]/n_number)#
+	 } #
+	cbind(low,up)
+number_parity
+number.parity
+p_number-1
+intervals
+intervals <- cbind(low,up)
+intervals
+C
+number.parity
+Y = C %*% number.parity
+Y = C %*% t(number.parity)
+Y
+Y = C %*% t(number.parity)
+Y
+Y = t(C %*% t(number.parity))
+Y
+qqnorm([Y[,1]])#
+qqline([Y[,1]])
+qqnorm([Y[,1])#
+qqline([Y[,1])
+qqnorm(Y[,1])#
+qqline(Y[,1])
+qqnorm(Y[,1])#
+qqline(Y[,1])#
+qqnorm(Y[,2])#
+qqline(Y[,2])#
+#
+qqnorm(Y[,2])#
+qqline(Y[,2])
+qqnorm(Y[,1])#
+qqline(Y[,1])#
+qqnorm(Y[,2])#
+qqline(Y[,2])#
+#
+qqnorm(Y[,3])#
+qqline(Y[,3])
+qqnorm(Y[,1])#
+qqline(Y[,1])
+qqnorm(Y[,2])
+qqnorm(Y[,3])
+turtle_data <- read('turtlex.txt', header = TRUE)
+turtle_data <- readtable('turtlex.txt', header = TRUE)
+turtle_data <- read.table('turtlex.txt', header = TRUE)
+turtle_data <- read.table('turtle.txt', header = TRUE)
+turtle_data <- read.table('turtles.txt', header = TRUE)
+turtle_data.head
+turtle_data.head()
+turtle_data
+turtle_female <- turtle_data[turtle_data$sex == "female"]
+turtle_female <- turtle_data[turtle_data$sex == "female",]
+turtle_female
+turtle_male <- turtle_data[turtle_data$sex == "male", ]
+x_bar_female = apply(turtle_female[1,3], mean, 2)
+x_bar_female = apply(turtle_female[1,3], 2, mean)
+x_bar_female = apply(turtle_female[1:3], 2, mean)
+x_bar_female
+x_bar_male = apply(turtle_male[1:3], 2, mean)
+n_female = nrows(turtle_female)
+n_female = nrow(turtle_female)
+n_female
+n_male = nrow(turtle_male)
+n_male
+S_female = cov(turtle_female[1:3])#
+S_male = cov(turtle_male[1:3])
+S_female
+S_p =  ((n_female-1)%*%S_female + (n_male - 1)%*%S_male) / (n_male + n_female -2)
+S_female = cov(turtle_female[1:3])#
+S_male = cov(turtle_male[1:3])#
+S_p =  ((n_female-1)*S_female + (n_male - 1)*S_male) / (n_male + n_female -2)
+S_p
+T_sq_turtle = t(x_bar_female - x_bar_male) %*% solve((1/n_female)+ (1/n_male)%*% S_p) %*% (x_bar_female - x_bar_male)
+T_sq_turtle = t(x_bar_female - x_bar_male) * solve((1/n_female)+ (1/n_male)%*% S_p) %*% (x_bar_female - x_bar_male)
+T_sq_turtle = t(x_bar_female - x_bar_male) %*% solve((1/n_female)+ (1/n_male)* S_p) %*% (x_bar_female - x_bar_male)
+T_sq_turtle
+S_female = cov(turtle_female[1:3])#
+S_male = cov(turtle_male[1:3])#
+S_p =  ((n_female-1)*S_female + (n_male - 1)*S_male) / (n_male + n_female -2)#
+#
+T_sq_turtle = t(x_bar_female - x_bar_male) %*% solve((1/n_female)+ (1/n_male)* S_p) %*% (x_bar_female - x_bar_male)
+T_sq_turtle
+T_sq_turtle = t(x_bar_female - x_bar_male) %*% solve(((1/n_female)+ (1/n_male))* S_p) %*% (x_bar_female - x_bar_male)
+T_sq_turtle
+#TURTLE DATA #
+#
+turtle_data <- read.table('turtles.txt', header = TRUE)#
+#
+#test for equality of the two population mean vectors using alpha = 0.05#
+turtle_female <- turtle_data[turtle_data$sex == "female",]#
+n_female = nrow(turtle_female)#
+turtle_male <- turtle_data[turtle_data$sex == "male", ]#
+n_male = nrow(turtle_male)#
+x_bar_female = apply(turtle_female[1:3], 2, mean)#
+#
+x_bar_male = apply(turtle_male[1:3], 2, mean)#
+#
+#ok so now we have the two mean sample vectors for male and female.  n_female and n_male are both small.  test two population mean vectors using the sample we have #
+#
+S_female = cov(turtle_female[1:3])#
+S_male = cov(turtle_male[1:3])#
+S_p =  ((n_female-1)*S_female + (n_male - 1)*S_male) / (n_male + n_female -2)#
+#
+T_sq_turtle = t(x_bar_female - x_bar_male) %*% solve(((1/n_female)+ (1/n_male))* S_p) %*% (x_bar_female - x_bar_male)
+T_sq_turtle
+p = ncol(turtle_female[1:3])
+F_value = qf(0.05, p , n_female + n_male - 1, lower.tail = FALSE)
+F_value
+T2_critical_turtle =( ((n_female + n_male - 2) * p )/ n_female + n_male - 1- p ) * F_value
+T2_critical_turtle
+#cauclate critical value upper 5% for Hotellings t2 '#
+F_value = qf(0.05, p , n_female + n_male - 1, lower.tail = FALSE)#
+T2_critical_turtle =( ((n_female + n_male - 2) * p )/ (n_female + n_male - 1- p )) * F_value
+T2_critical_turtle
+d <- matrix(x_bar_female - x_bar_male, ncol = 1)#
+a <- solve(S_p) %*% d#
+a
+d
+S_p
+log.female = log(turtle_female)
+female_log = log(turtle_female)
+female_log = log(turtle_female[1:3])
+female_log
+male_log = log(turtle_male[1:3])
+d  = female_log - male_log
+d
+S_d = cov(d)
+S-d
+d_bar = apply(d,2,mean)
+d_bar
+length.lower = d_bar[1] - sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p[1,1])
+length.lower
+length.lower = male_log_mean[1] - female_log_mean[1]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p[1,1])
+length.lower = female_log_mean[1] - male_log_mean[1]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p[1,1])
+female_log = log(turtle_female[1:3])#
+female_log_mean = apply(female_log,2,mean)#
+male_log = log(turtle_male[1:3])#
+male_log_mean = apply(male_log,2,mean)#
+#
+#length#
+length.lower = female_log_mean[1] - male_log_mean[1]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p[1,1])
+length.lower
+female_log = log(turtle_female[1:3])#
+female_log_mean = apply(female_log,2,mean)#
+male_log = log(turtle_male[1:3])#
+male_log_mean = apply(male_log,2,mean)#
+#
+#length#
+length.lower = male_log_mean[1] - female_log_mean[1]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p[1,1])
+length.lower
+male_log_mean[1]
+male_log_mean[1,]
+S_female_new = cov(female_log)#
+S_male_new = cov(male_log)#
+S_p_new =  ((n_female-1)*S_female_new + (n_male - 1)*S_male_new) / (n_male + n_female -2)#
+#
+#length#
+length.lower = female_log_mean[1] - male_log_mean[1]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[1,1])
+length.lower
+female_log = log(turtle_female[1:3])
+#length#
+length.lower = female_log_mean[1] - male_log_mean[1]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+length.upper = female_log_mean[1] - male_log_mean[1]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+width.lower=female_log_mean[2] - male_log_mean[2]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+width.upper=female_log_mean[2] +male_log_mean[2]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+height.lower=female_log_mean[3] - male_log_mean[3]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) #
+height.upper=female_log_mean[3] + male_log_mean[3]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[3,3])
+height.upper
+height.lower
+width.upper
+width.lower
+#length#
+length.lower = female_log_mean[1] - male_log_mean[1]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+length.upper = female_log_mean[1] - male_log_mean[1]+sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+width.lower=female_log_mean[2] - male_log_mean[2]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+width.upper=female_log_mean[2] -male_log_mean[2]+sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+height.lower=female_log_mean[3] - male_log_mean[3]- sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) #
+height.upper=female_log_mean[3] -male_log_mean[3]+sqrt((p * (n_female + n_male - 2))/ (n_female + n_male -1-p) * F_value) * sqrt((1/n_female + 1/n_male) * S_p_new[3,3])
+width.upper
+height.upper
+blength.lower = female_log_mean[1] - male_log_mean[1]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+blength.upper =  female_log_mean[1] - male_log_mean[1]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1])
+blength.lower
+t_value = qt(0.05/(2*p), n_female+n_male - 2, lower.tail=F)
+blength.lower = female_log_mean[1] - male_log_mean[1]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1])
+blength.lower
+t_value = qt(0.05/(2*p), n_female+n_male - 2, lower.tail=F)#
+#
+blength.lower = female_log_mean[1] - male_log_mean[1]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+blength.upper =  female_log_mean[1] - male_log_mean[1]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+#
+bwidth.lower = female_log_mean[2] - male_log_mean[2]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+b.widthupper =  female_log_mean[2] - male_log_mean[2]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+#
+bheight.lower = female_log_mean[3] - male_log_mean[3]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) #
+bheight.upper =  female_log_mean[3] - male_log_mean[3]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[3,3])
+bonferronici.length = cbind(blength.lower, blength.upper)#
+bonferronici.length#
+#
+bonferronici.width= cbind(blength.width, blength.width)#
+bonferronici.width
+t_value = qt(0.05/(2*p), n_female+n_male - 2, lower.tail=F)#
+#
+blength.lower = female_log_mean[1] - male_log_mean[1]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+blength.upper =  female_log_mean[1] - male_log_mean[1]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+#
+bwidth.lower = female_log_mean[2] - male_log_mean[2]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+b.widthupper =  female_log_mean[2] - male_log_mean[2]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+#
+bheight.lower = female_log_mean[3] - male_log_mean[3]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) #
+bheight.upper =  female_log_mean[3] - male_log_mean[3]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) #
+#
+bonferronici.length = cbind(blength.lower, blength.upper)#
+bonferronici.length#
+#
+bonferronici.width= cbind(blength.width, blength.width)#
+bonferronici.width
+bonferronici.length = cbind(blength.lower, blength.upper)
+bonferronici.length
+bonferronici.width= cbind(blength.width, blength.width)
+bonferronici.length = cbind(blength.lower, blength.upper)#
+bonferronici.length#
+#
+bonferronici.width= cbind(bwidth.lower, bwdith.upper)#
+bonferronici.width#
+bonferronici.height= cbind(bheight.lower, bheight.upper)#
+bonferronici.height
+blength.lower = female_log_mean[1] - male_log_mean[1]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+blength.upper =  female_log_mean[1] - male_log_mean[1]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[1,1]) #
+#
+bwidth.lower = female_log_mean[2] - male_log_mean[2]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+b.widthupper =  female_log_mean[2] - male_log_mean[2]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[2,2]) #
+#
+bheight.lower = female_log_mean[3] - male_log_mean[3]- t_value * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) #
+bheight.upper =  female_log_mean[3] - male_log_mean[3]+ t_value * sqrt((1/n_female + 1/n_male) * S_p_new[3,3]) #
+#
+bonferronici.length = cbind(blength.lower, blength.upper)#
+bonferronici.length#
+#
+bonferronici.width= cbind(bwidth.lower, b.widthupper)#
+bonferronici.width#
+bonferronici.height= cbind(bheight.lower, bheight.upper)#
+bonferronici.height
