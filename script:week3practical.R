@@ -20,4 +20,17 @@ heplot(iris_manova, fill = T)
 data(mtcars)
 names(mtcars)
 mtcars_manova <- manova(cbind(mpg, disp, hp) ~ am*vs, data=mtcars )
-summary(mtcars_manova, test = "Wilks")
+car_summary<-summary(mtcars_manova, test = "Wilks")
+
+head(mtcars)
+
+#mean vectors differ for am as p very small 
+
+#mean vectors differ for vs as p very small #transmission is associated with large shifts particularly in disp and hp
+
+#vs associated with large shifts with disp 
+
+
+#Multivariate Regression 
+head(iris)
+iris_lm <- lm(cbind(Sepal.Length, Sepal.Width) ~ Species, data=iris)
