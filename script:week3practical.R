@@ -34,3 +34,20 @@ head(mtcars)
 #Multivariate Regression 
 head(iris)
 iris_lm <- lm(cbind(Sepal.Length, Sepal.Width) ~ Species, data=iris)
+iris_manova <- manova(iris_lm)
+iris_manova
+#for sepal length, SS due to species is 63.21. This means species explains alot of the total variation of sepal length Sepal.Length shows stronger separation by species than Sepal.Width does (because the Species SS is larger relative to Residual SS).
+
+#pillai/wilks table 
+summary(iris_manova, test = "Pillai")
+#whether species affects joint mean vector of responses.  mu vector for each group. contains length and width. 
+library(car)
+#Pillai stat is 0.94531. evidence that mean differs across the different groups ie. species.
+Anova(iris_lm, type = 3, test.statistic = "Pillai")
+#so yes, pillai stat is high, ss of sepal length due to species is high . 
+
+#. Compute the Mahalanobis distances based on sepal measurements. (Hint: Use the mahalanobis function.)
+X <- iris[, cbind("Sepal.Length", "Sepal.Width")]
+x_bar = apply(X, 2, mean)
+distance <- mahalanobis(X, x_bar, cov(X))
+distance
