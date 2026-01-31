@@ -44,3 +44,34 @@ third_contrast_lower <- Cxbar[3] - sqrt(Critical_value_updated) * sqrt((CSC[3,3]
 third_contrast_upper <- Cxbar[3] + sqrt(Critical_value_updated) * sqrt((CSC[3,3])/n)
 ci_interval3 <- cbind(third_contrast_lower,third_contrast_upper )
 ci_interval3
+#none of these contain 0, so means are significant to eachother 
+
+#peanut crop question 2 
+
+#3 varieties, 2 geographical locations, and 3 variables measured
+
+
+peanuts <- matrix(scan(text="
+1 5 195.3 153.1 51.4
+1 5 194.3 167.7 53.7
+2 5 189.7 139.5 55.5
+2 5 180.4 121.1 44.4
+1 6 203.0 156.8 49.8
+1 6 195.9 166.0 45.8
+2 6 202.7 166.1 60.4
+2 6 197.6 161.8 54.1
+1 8 193.5 164.5 57.8
+1 8 187.0 165.1 58.6
+2 8 201.5 166.8 65.0
+2 8 200.0 173.8 67.2
+"), ncol=5, byrow=TRUE)
+
+colnames(peanuts) <- c("location","variety","Yield","StMatKer","SeedSize")
+
+peanut_df <- as.data.frame(peanuts)
+peanut_df$location <- factor(peanut_df$location)
+peanut_df$variety  <- factor(peanut_df$variety)
+
+peanut_manova <- manova(cbind(Yield, StMatKer, SeedSize) ~ location * variety, data = peanut_df)
+
+summary(peanut_manova, test = "Wilks")
