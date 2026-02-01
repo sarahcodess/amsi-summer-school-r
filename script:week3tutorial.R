@@ -88,3 +88,23 @@ error = Y - Y_fitted
 #verity sum of squares and cross products sscp 
 LHS <- t(Y) %*% Y 
 RHS <- t(Y_fitted) %*% Y_fitted + t(error) %*% error
+x0 = 0.5
+#calculate 95 confidence interval for mean response e(y10) = b01+b11x0  where x0 = 0.5 
+
+Y0hat= beta_hat[1,1] + beta_hat[2,1]*0.5
+n <- nrow(Y)
+p <- 2
+
+S = (t(error) %*% error ) / (n-p)
+
+tcrit <- qt(0.975, df = n - p)
+
+s11 <- S[1,1]    
+
+XtX_inv <- solve(t(X) %*% X)
+c0 <- matrix(c(1, x0), nrow = 1)
+varY0 <- s11 * (c0 %*% XtX_inv %*% t(c0))
+seY0  <- sqrt(varY0)
+
+
+CI <- c(Y0hat - tcrit*seY0, Y0hat + tcrit*seY0)
