@@ -75,3 +75,16 @@ peanut_df$variety  <- factor(peanut_df$variety)
 peanut_manova <- manova(cbind(Yield, StMatKer, SeedSize) ~ location * variety, data = peanut_df)
 
 summary(peanut_manova, test = "Wilks")
+
+#q3 bivariate model 
+#calculate least square estimate 
+X = matrix(c(1, 1, 1, 1, 1, -2, -1, 0, 1, 2), nrow = 5)
+Y = matrix(c(5,3,4,2,1,-3,-1,-1,2,3), nrow = 5)
+beta_hat = solve(t(X)%*%X) %*% (t(X) %*%Y)
+
+Y_fitted = X %*% beta_hat
+error = Y - Y_fitted
+
+#verity sum of squares and cross products sscp 
+LHS <- t(Y) %*% Y 
+RHS <- t(Y_fitted) %*% Y_fitted + t(error) %*% error
