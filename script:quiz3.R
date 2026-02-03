@@ -24,11 +24,11 @@ S_p = ((n_survive - 1)* S_1 + (n_perish - 1) * S_2) / (n_survive + n_perish - 2)
 
 t_statistic = t(x_bar_survived - x_bar_perished) %*% solve(((1/n_survive)+ (1/n_perish)) * S_p)  %*% (x_bar_survived - x_bar_perished)
 t_statistic 
-t_critical =( (  n_perish + n_survive - 2 )* p) / (n_perish + n_survive - 1 - p) * qf(0.05, n_survive + n_perish - 1-p, lower.tail = FALSE)
+t_critical =( (  n_perish + n_survive - 2 )* p) / (n_perish + n_survive - 1 - p)* qf(0.05, p, n_survive + n_perish - 1-p, lower.tail = FALSE)
 
 t_critical
 
-#t_stat > t_crit therefore reject null hypothesis meaning that there is significant stats to suggest the mean vectors between survived birds and perished birds to be different 
+#t_stat < t_crit therefore do not reject null hypothesis meaning that there is no significant stats to suggest the mean vectors between survived birds and perished birds to be different 
 
 #Construct 95% simultaneous confidence intervals for the components of the difference in mean vectors µS − µD using an appropriate multivariate method. Identify which variables show evidence of a difference after accounting for multiple testing.
 
@@ -84,6 +84,14 @@ inside
 #yes itis inside so no evidence of difference for the pair of length and alar_extend 
 #At the 5% level, we do not have evidence of a joint difference in the mean vector (Total_Length, Alar_Extent) between survived and perished birds.
 
+#Perform a one-way MANOVA using survival status as the factor. Report the results in an ANOVA table. State your conclusion and compare it with the results obtained from the Hotelling T 2 test.
+Y <- bird_data[, 3:7]
+group <- factor(bird_data$Survive) 
+#so factor goes after the ~ . 
+bird_lm <- lm(as.matrix(bird_data[,3:7]) ~ factor(bird_data$Survive))
+bird_manova <- manova(bird_lm)
+
+summary(bird_manova, test = "Wilks")
 
 
 
