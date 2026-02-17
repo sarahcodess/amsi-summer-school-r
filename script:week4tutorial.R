@@ -42,6 +42,23 @@ R <- D_inv_sqrt %*% S %*% D_inv_sqrt
 # View the result
 print(R)
 
+eigen_R <- eigen(R)
+eigenvalues_R <- eigen_R$values
 
+eigenvectors_R <- eigen_R$vectors
+#pca1 = -.7071068x1 -0.7071068x2 . lmabda_1 = 1.6861 since var(pca/y_i) = lmabda_i
+#pca2 = 0.7072068x1 - 0.7071068x2 . lmabda_2 = .3138566 
 
+#calculate proportion of total sample variance explained by first 
+s_v_1 = 1.6861 / (1.6861+0.3138566)
+
+#answer: 0.843
+
+#Calculate the correlation coefficients cor(ˆy1,x1) and cor(ˆy2,x2),
+
+cor_1 = eigenvectors_R[1,1] * sqrt(eigenvalues_R[1]) / sqrt(R[1,1])# -0.9181894
+cor_2= eigenvectors_R[2,2] * sqrt(eigenvalues_R[2]) / sqrt(R[2,2]) #-0.3961417
+
+#key takeaway - use correlation matrix when different scales, scale is arbitrary . 
+#use cov matrix for pca when all variables are measured in the same way in the same units/scale
 
