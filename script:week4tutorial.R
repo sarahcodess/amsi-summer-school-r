@@ -17,4 +17,31 @@ eigenvalues_S <- eigen$values
 eigenvectors_S <- eigen$vectors
 
 
+#eigenvalues : 7488.80293   13.83707
+#eigenvectors : [-0.99917337   -0.04065185] ,  [-0.99917337 0.04065185]
+
+#y1 = -0.9992x1 + 0.04065x2 , % = 0.9981557065
+#y2 = - 0.04065x1 -0.99917337x2 +  % = 0.001844293475
+
+
+#cor(y_1hat , x1) and cor(y_2hat,x2) 
+cor_y1_x1 <- eigenvectors_S[1,1] * sqrt(eigenvalues_S[1]) / sqrt(S[1,1])
+#-0.9999985
+cor_y2_x2 <- eigenvectors_S[2,2] * sqrt(eigenvalues_S[2]) / sqrt(S[2,2])
+#-0.7262652
+
+#refer to question 2. convert s to the sample correlation matrix R. 
+
+diag_elements <- diag(S)
+
+D_inv_sqrt <- diag(diag_elements^(-1/2))
+
+
+R <- D_inv_sqrt %*% S %*% D_inv_sqrt
+
+# View the result
+print(R)
+
+
+
 
