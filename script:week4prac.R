@@ -56,8 +56,11 @@ X_loadings <- cor(X, X %*% cca_iris$xcoef)
 Y_loadings <- cor(Y, Y %*% cca_iris$ycoef)
 
 U1 <- X %*% cca_iris$xcoef[,1]
+#u1 represents a concept, its latent hidden. 
 V1 <- Y %*% cca_iris$ycoef[,1]
+#inner dimensions must match. 
 plot(U1, V1)
+#If I know the summary of a flower's Sepal shape (), I can predict its Petal shape ( very accurately.
 #cca_iris$cor[1] 0.94 meaning sepal dimensions as a group relate to petal dimesion as a group. 
 
 
@@ -66,5 +69,7 @@ set.seed(1234)
 iris_km <- kmeans(iris[,-5], centers = 3)
 iris_km$size
 iris_km$centers
+
+
 
 
