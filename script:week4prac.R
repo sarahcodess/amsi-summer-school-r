@@ -103,6 +103,42 @@ plot(fit_gmm, what = "density")
 #2 clusters, VEV model. 
 table(iris$Species,fit_gmm$classification)
 
+	#Heirarchical clustering
+	iris_dist <- dist(scale(iris[,1:4]), method = "euclidean")
+	iris_hc <- hclust(iris_dist, method = "average")
+	
+	plot(iris_hc)
+	rect.hclust(iris_hc,k=3)
+
+# 1. Cut the tree into exactly 3 groups
+iris_hc_clusters <- cutree(iris_hc, k = 3)
+
+# 2. Show the sizes of each cluster
+table(iris_hc_clusters)
+
+library(MASS)
+iris_lda <- lda(
+Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width,
+data = iris
+)
+iris_lda
+
+
+summary(iris_lda)
+lda_pred = predict(iris_lda)
+#confusion matrix
+table(lda_pred$class, iris$Species)
+
+#plot first two linear discriminants showing species separation 
+plot(iris_lda)
+
+#LDA assumption assumes that covariance matrix betweenc lasses are the same. #Homoscedasticity.
+
+library(klaR)
+
+partimat(Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data = iris, method = "lda")
+
+
 
 
 
