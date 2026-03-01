@@ -37,7 +37,7 @@ data(iris)
 X <- scale(iris[, c("Sepal.Length" , "Sepal.Width")])
 Y <- scale(iris[, c("Petal.Length" , "Petal.Width")])
 
-cca_iris <- cancor(X,Y
+cca_iris <- cancor(X,Y)
 cca_iris
 
 
@@ -67,8 +67,43 @@ plot(U1, V1)
 RNGversion("4.5.2")
 set.seed(1234)
 iris_km <- kmeans(iris[,-5], centers = 3)
+#extract cluster size 
 iris_km$size
+#extract. cluster cetnres
 iris_km$centers
+table(iris$Species, iris_km$cluster)
+
+#high accuracy of setoa, virginica low accuracy 
+
+wss <- numeric(10) # Create a place to store the 10 WSS values
+
+for (i in 1:10) {
+  # Run k-means for each k from 1 to 10
+  km_out <- kmeans(iris[, -5], centers = i, nstart = 20)
+  
+  # Save the Total Within-Cluster Sum of Squares
+  wss[i] <- km_out$tot.withinss
+}
+#twcss :it measures how "tight" its own groups are. not related to the true value. withinss is the distance from each flower to the middle of its own group, not to its true species label.
+
+plot(1:10, wss, type = "l", 
+     xlab = "Number of Clusters(k)", 
+     ylab = "Total Within-Cluster Sum of Squares",
+     main = "Elbow Method for Optimal k")
+#wss drops significantly after k=3 so 3 clsuters is optimal 
+
+#Gaussian Mixture Models (GMM)
+library(mclust)
+data(iris)
+data_gm = iris[,1:4]
+fit_gmm = Mclust(data_gm)
+
+plot(fit_gmm, what = "density")
+#petal length creates well seperate clusters. sepal width show overlap. 
+#2 clusters, VEV model. 
+table(iris$Species,fit_gmm$classification)
+
+
 
 
 
